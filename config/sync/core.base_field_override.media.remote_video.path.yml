@@ -1,19 +1,19 @@
-uuid: f6a4715f-7a11-4cec-8aa5-7b3509d372ea
+uuid: 687b5ff3-c165-4821-b135-8975e86f52e0
 langcode: en
 status: true
 dependencies:
   config:
-    - node.type.event
+    - media.type.remote_video
   module:
     - path
-id: node.event.path
+id: media.remote_video.path
 field_name: path
-entity_type: node
-bundle: event
+entity_type: media
+bundle: remote_video
 label: 'URL alias'
 description: ''
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }

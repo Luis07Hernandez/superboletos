@@ -1,19 +1,19 @@
-uuid: f6a4715f-7a11-4cec-8aa5-7b3509d372ea
+uuid: b564e3ef-243f-4ade-891c-8d2ed85cb1bd
 langcode: en
 status: true
 dependencies:
   config:
-    - node.type.event
+    - media.type.video
   module:
     - path
-id: node.event.path
+id: media.video.path
 field_name: path
-entity_type: node
-bundle: event
+entity_type: media
+bundle: video
 label: 'URL alias'
 description: ''
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }

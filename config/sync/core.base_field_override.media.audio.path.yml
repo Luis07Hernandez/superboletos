@@ -1,19 +1,19 @@
-uuid: f6a4715f-7a11-4cec-8aa5-7b3509d372ea
+uuid: e0b9dac7-3652-44ce-9102-c8f84c376952
 langcode: en
 status: true
 dependencies:
   config:
-    - node.type.event
+    - media.type.audio
   module:
     - path
-id: node.event.path
+id: media.audio.path
 field_name: path
-entity_type: node
-bundle: event
+entity_type: media
+bundle: audio
 label: 'URL alias'
 description: ''
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }

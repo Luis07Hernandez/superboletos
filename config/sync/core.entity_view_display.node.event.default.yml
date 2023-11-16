@@ -9,7 +9,6 @@ dependencies:
     - field.field.node.event.field_recinto
     - node.type.event
   module:
-    - datetime
     - user
 id: node.event.default
 targetEntityType: node
@@ -33,13 +32,12 @@ content:
     weight: 106
     region: content
   field_date:
-    type: datetime_default
+    type: string
     label: above
     settings:
-      timezone_override: ''
-      format_type: medium
+      link_to_entity: false
     third_party_settings: {  }
-    weight: 104
+    weight: 107
     region: content
   field_recinto:
     type: string

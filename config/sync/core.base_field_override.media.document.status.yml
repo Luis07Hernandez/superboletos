@@ -1,17 +1,17 @@
-uuid: c29cba21-b432-4840-ad1a-876118b0bbef
+uuid: ae739087-d653-4eed-8d30-dc9880d8ab2f
 langcode: en
 status: true
 dependencies:
   config:
-    - node.type.event
-id: node.event.promote
-field_name: promote
-entity_type: node
-bundle: event
-label: 'Promoted to front page'
+    - media.type.document
+id: media.document.status
+field_name: status
+entity_type: media
+bundle: document
+label: Published
 description: ''
 required: false
-translatable: true
+translatable: false
 default_value:
   -
     value: 1
