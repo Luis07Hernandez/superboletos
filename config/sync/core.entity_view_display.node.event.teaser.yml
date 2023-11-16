@@ -1,0 +1,29 @@
+uuid: a8ac3980-1123-4517-903c-e2aac3c5e632
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.event.field__city
+    - field.field.node.event.field_category
+    - field.field.node.event.field_date
+    - field.field.node.event.field_recinto
+    - node.type.event
+  module:
+    - user
+id: node.event.teaser
+targetEntityType: node
+bundle: event
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field__city: true
+  field_category: true
+  field_date: true
+  field_recinto: true
+  langcode: true

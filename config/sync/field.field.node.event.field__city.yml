@@ -1,0 +1,19 @@
+uuid: 6016448e-1500-4e8a-8dab-18063408c71b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field__city
+    - node.type.event
+id: node.event.field__city
+field_name: field__city
+entity_type: node
+bundle: event
+label: ' City'
+description: 'Enter city, example: Mexico City, Mexico City'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
