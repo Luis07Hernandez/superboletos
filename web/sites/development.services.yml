@@ -4,6 +4,22 @@
 # 'example.settings.local.php' file, which sits next to this file.
 parameters:
   http.response.debug_cacheability_headers: true
+  twig.config:
+    # Twig debugging:
+    #
+    # Enabling Twig debugging is not recommended in production environments.
+    # @default false
+    debug: true
+    # Twig auto-reload:
+    #
+    # Enabling auto-reload is not recommended in production environments.
+    # @default null
+    auto_reload: true
+    # Twig cache:
+    #
+    # Disabling the Twig cache is not recommended in production environments.
+    # @default true
+    cache: false
 services:
   cache.backend.null:
     class: Drupal\Core\Cache\NullBackendFactory
