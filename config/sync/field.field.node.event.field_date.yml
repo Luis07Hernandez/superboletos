@@ -1,21 +1,19 @@
-uuid: d223bc9c-27a3-4a68-a235-348175c7f0b0
+uuid: e357615c-8441-489b-bf2a-2c900719a213
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_date
     - node.type.event
-  module:
-    - datetime
 id: node.event.field_date
 field_name: field_date
 entity_type: node
 bundle: event
 label: Date
-description: 'Enter date'
+description: 'Enter a Date'
 required: true
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: datetime
+field_type: string

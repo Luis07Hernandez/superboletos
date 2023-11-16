@@ -12,7 +12,7 @@ bundle: event
 label: ' City'
 description: 'Enter city, example: Mexico City, Mexico City'
 required: true
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings: {  }
