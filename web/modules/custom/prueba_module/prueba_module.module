@@ -1,0 +1,181 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Prueba Module module.
+ */
+
+function prueba_module_theme($theme, $type, $module, $path)
+{
+  return [
+    'paragraph__event' => [
+      'base hook' => 'paragraph',
+      'render element' => 'elements',
+      'template' => 'paragraph--event',
+    ],
+    'views_view_unformatted__last_events__block_1' => [
+      'base hook' => 'views_view',
+      'render element' => 'elements',
+      'template' => 'views-view-unformatted--last-events--block-1',
+    ],
+    'node__event__teaser' => [
+      'base hook' => 'node',
+      'render element' => 'elements',
+      'template' => 'node--event--teaser',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for node templates.
+ */
+function prueba_module_preprocess_node(&$variables)
+{
+  $node = $variables['node'];
+
+  // Get node bundle/type
+  $node_bundle = $node->bundle();
+
+  // Define the content types that this preprocess applies to.
+  $valid_nodes = [
+    'event',
+  ];
+
+  // Check if the current node type is one of the valid node types.
+  if (in_array($node_bundle, $valid_nodes)) {
+
+    $variables['node_url'] = $node->toUrl()->toString();
+    $variables['node_title'] = $node->label();
+    $variables['node_id'] = $node->id();
+
+    // Attach tailwind library
+    $variables['#attached']['library'][] = 'prueba_module/tailwindcss';
+
+    // Attach general library
+    $variables['#attached']['library'][] = 'prueba_module/style';
+
+
+    // For media images, extract the URL and alt text and set them as variables.
+    if ($node->hasField('field_media_image') && !$node->get('field_media_image')->isEmpty()) {
+      $media = $node->get('field_media_image')->entity;
+      if ($media) {
+        $media_image_fields = ['field_media_image', 'field_media_image_1'];
+        foreach ($media_image_fields as $media_image) {
+          if ($media->hasField($media_image)) {
+            $image = $media->get($media_image)->entity;
+            if ($image) {
+              $variables['image_url'] = $image->createFileUrl(FALSE);
+              $variables['image_alt'] = $media->get($media_image)->alt ?? '';
+              break;
+            }
+          }
+        }
+      }
+    }
+
+    // Map Drupal fields to template variables and set values if fields are not empty.
+    $field_mappings = [
+      'field__city' => 'node_city',
+      'field_date' => 'node_date',
+      'field_recinto' => 'node_recinto'
+    ];
+
+    foreach ($field_mappings as $field_name => $variable_name) {
+      if ($node->hasField($field_name) && !$node->get($field_name)->isEmpty()) {
+        $variables[$variable_name] = $node->get($field_name)->value;
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for paragraph templates.
+ */
+function prueba_module_preprocess_paragraph(&$variables)
+{
+  $paragraph = $variables['paragraph'];
+
+  // Get paragraph bundle/type
+  $paragraph_bundle = $paragraph->bundle();
+
+  // Define the content types that this preprocess applies to.
+  $valid_paragraph = [
+    'event',
+  ];
+
+  // Check if the current paragraph type is one of the valid paragraph types.
+  if (in_array($paragraph_bundle, $valid_paragraph)) {
+
+    $variables['paragraph_id'] = $paragraph->id();
+
+    // Attach tailwind library
+    $variables['#attached']['library'][] = 'prueba_module/tailwindcss';
+
+    // Attach general library
+    $variables['#attached']['library'][] = 'prueba_module/style';
+
+
+    // For media images, extract the URL and alt text and set them as variables.
+    if ($paragraph->hasField('field_media_image') && !$paragraph->get('field_media_image')->isEmpty()) {
+      $media = $paragraph->get('field_media_image')->entity;
+      if ($media) {
+        $media_image_fields = ['field_media_image', 'field_media_image_1'];
+        foreach ($media_image_fields as $media_image) {
+          if ($media->hasField($media_image)) {
+            $image = $media->get($media_image)->entity;
+            if ($image) {
+              $variables['image_url'] = $image->createFileUrl(FALSE);
+              $variables['image_alt'] = $media->get($media_image)->alt ?? '';
+              break;
+            }
+          }
+        }
+      }
+    }
+
+    // Map Drupal fields to template variables and set values if fields are not empty.
+    $field_mappings = [
+      'field_block_title' => 'paragraph_block_title',
+    ];
+
+    foreach ($field_mappings as $field_name => $variable_name) {
+      if ($paragraph->hasField($field_name) && !$paragraph->get($field_name)->isEmpty()) {
+        $variables[$variable_name] = $paragraph->get($field_name)->value;
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for paragraph templates.
+ */
+function prueba_module_preprocess_paragraph__event(&$variables)
+{
+  $variables['last_events_view'] = views_embed_view('last_events', 'block_1');
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for views-view-unformatted templates.
+ */
+function prueba_module_theme_suggestions_views_view_unformatted_alter(array &$suggestions, array $variables)
+{
+  // Obtén el objeto de la vista y el nombre del display desde las variables.
+  $view = $variables['view'];
+  $display_id = $view->getDisplay()->display['id'];
+  // Comprueba si es la vista y el display específicos.
+  if ($view->id() == 'last_events' && $display_id == 'block_1') {
+    $suggestions[] = 'views_view_unformatted__last_events__block_1';
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for an exposed form in Views.
+ */
+function prueba_module_form_views_exposed_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if ($form['#id'] == 'views-exposed-form-last-events-block-1'){
+    // librería personalizada que contiene CSS y JS.
+    $form['#attached']['library'][] = 'prueba_module/convertSelectToButtons';
+  }
+}
+
+

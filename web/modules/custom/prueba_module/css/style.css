@@ -1,0 +1,18 @@
+.superboletos-node-teaser-8 a div{
+  min-height: 500px;
+}
+
+.superboletos-node-teaser {
+  margin-block-end: inherit !important;
+  position: inherit !important;
+}
+
+#views-exposed-form-last-events-block-1{
+  display: none;
+}
+
+.button-selected{
+  background-color: white !important;
+  color: rgb(31 41 55) !important;
+  border: 1px solid rgb(31 41 55);
+}

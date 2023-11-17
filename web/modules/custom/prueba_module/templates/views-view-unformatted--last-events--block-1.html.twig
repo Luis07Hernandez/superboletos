@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a view of unformatted rows.
+ *
+ * Available variables:
+ * - title: The title of this group of rows. May be empty.
+ * - rows: A list of the view's row items.
+ *   - attributes: The row's HTML attributes.
+ *   - content: The row's content.
+ * - view: The view object.
+ * - default_row_class: A flag indicating whether default classes should be
+ *   used on rows.
+ *
+ * @see template_preprocess_views_view_unformatted()
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="max-w-screen-xl mx-auto  relative">
+	<div class="grid grid-cols-1 sm:grid-cols-12 gap-5">
+		{% for row in rows %}
+			{% if loop.index == 1 %}
+				<div class="sm:col-span-5">
+          {{- row.content -}}
+				</div>
+			{% else %}
+				{% if loop.index == 2 %}
+					<!-- Inicio del contenedor para el resto de elementos, solo se agrega una vez -->
+					<div class="sm:col-span-7 grid grid-cols-2 lg:grid-cols-2 gap-5">
+					{% endif %}
+					  {{- row.content -}}
+					{% if loop.last %}
+						<!-- Cierre del contenedor para el resto de elementos, solo se agrega una vez -->
+					</div>
+				{% endif %}
+			{% endif %}
+		{% endfor %}
+	</div>
+</div>
