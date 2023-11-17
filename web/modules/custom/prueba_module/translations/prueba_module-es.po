@@ -1,2 +1,28 @@
-msgid ""
-msgstr ""
+msgid "Full Name"
+msgstr "Nombre Completo"
+
+msgid "Promoter Name"
+msgstr "Nombre de Promotora"
+
+msgid "Address"
+msgstr "Direccion"
+
+msgid "Select a Country"
+msgstr "Selecciona un pais"
+
+msgid "Form Submission Details:"
+msgstr "Detalles de formulario de envio"
+
+msgid "This message was sent from the form ID: @form_id"
+msgstr "Este mensaje fue enviado desde el formulario con ID: @form_id"
+
+msgid "Drupal Superboletos Playful - Luis Hernandez"
+msgstr "Drupal Superboletos Playful - Luis Hernandez"
+
+msgid "If you receive this message it means your site is capable of using SMTP to send e-mail."
+msgstr "Si recibiste este mensaje, tu sitio es capaz de enviar correos usando SMTP"
+
+msgid "Success. The e-mail has been sent to @email via SMTP."
+msgstr "Exito!, Se ha enviado un correo a @email via SMTP."
+
+

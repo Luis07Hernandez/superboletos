@@ -23,6 +23,7 @@
         "drupal/entity_browser": "^2.9",
         "drupal/entity_usage": "^2.0@beta",
         "drupal/paragraphs": "^1.16",
+        "drupal/smtp": "^1.2",
         "drush/drush": "^12.4"
     },
     "conflict": {

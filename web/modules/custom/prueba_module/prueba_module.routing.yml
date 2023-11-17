@@ -1,0 +1,7 @@
+prueba_module.contact:
+  path: '/prueba-module/contact'
+  defaults:
+    _title: 'Contact'
+    _form: 'Drupal\prueba_module\Form\Contact'
+  requirements:
+    _permission: 'access content'
