@@ -3,13 +3,25 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.banners_list.field_banner_item
     - field.field.paragraph.banners_list.field_block_title
     - paragraphs.paragraphs_type.banners_list
+  module:
+    - entity_reference_revisions
 id: paragraph.banners_list.default
 targetEntityType: paragraph
 bundle: banners_list
 mode: default
 content:
+  field_banner_item:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: superboletos_banner_item
+      link: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
   field_block_title:
     type: string
     label: above
