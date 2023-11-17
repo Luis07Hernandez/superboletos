@@ -11,8 +11,10 @@ style:
   css:
     theme:
       css/style.css: { }
+  js:
+    js/main.js: {}
 
 convertSelectToButtons:
   version: 2.2.x
   js:
-    js/main.js: {}
+    js/convertSelectToButtons.js: {}

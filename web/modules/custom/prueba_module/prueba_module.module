@@ -23,6 +23,11 @@ function prueba_module_theme($theme, $type, $module, $path)
       'render element' => 'elements',
       'template' => 'node--event--teaser',
     ],
+    'paragraph__banners_list' => [
+      'base hook' => 'paragraph',
+      'render element' => 'elements',
+      'template' => 'paragraph--banners-list',
+    ],
   ];
 }
 
@@ -47,13 +52,6 @@ function prueba_module_preprocess_node(&$variables)
     $variables['node_url'] = $node->toUrl()->toString();
     $variables['node_title'] = $node->label();
     $variables['node_id'] = $node->id();
-
-    // Attach tailwind library
-    $variables['#attached']['library'][] = 'prueba_module/tailwindcss';
-
-    // Attach general library
-    $variables['#attached']['library'][] = 'prueba_module/style';
-
 
     // For media images, extract the URL and alt text and set them as variables.
     if ($node->hasField('field_media_image') && !$node->get('field_media_image')->isEmpty()) {
@@ -109,40 +107,46 @@ function prueba_module_preprocess_paragraph(&$variables)
 
     $variables['paragraph_id'] = $paragraph->id();
 
-    // Attach tailwind library
-    $variables['#attached']['library'][] = 'prueba_module/tailwindcss';
-
-    // Attach general library
-    $variables['#attached']['library'][] = 'prueba_module/style';
-
-
     // For media images, extract the URL and alt text and set them as variables.
-    if ($paragraph->hasField('field_media_image') && !$paragraph->get('field_media_image')->isEmpty()) {
-      $media = $paragraph->get('field_media_image')->entity;
-      if ($media) {
-        $media_image_fields = ['field_media_image', 'field_media_image_1'];
-        foreach ($media_image_fields as $media_image) {
-          if ($media->hasField($media_image)) {
-            $image = $media->get($media_image)->entity;
-            if ($image) {
-              $variables['image_url'] = $image->createFileUrl(FALSE);
-              $variables['image_alt'] = $media->get($media_image)->alt ?? '';
-              break;
-            }
-          }
-        }
-      }
-    }
+    $mediaData = getMediaData($paragraph);
+    $variables['image_url'] = $mediaData['image_url'] ?? null;
+    $variables['image_alt'] = $mediaData['image_alt'] ?? null;
 
     // Map Drupal fields to template variables and set values if fields are not empty.
     $field_mappings = [
       'field_block_title' => 'paragraph_block_title',
+      'field_title' => 'paragraph_title',
     ];
 
     foreach ($field_mappings as $field_name => $variable_name) {
       if ($paragraph->hasField($field_name) && !$paragraph->get($field_name)->isEmpty()) {
         $variables[$variable_name] = $paragraph->get($field_name)->value;
       }
+    }
+
+    //For Counter Up Features, extract the fields and set them as variables.
+    if ($paragraph->hasField('field_banner_item') && !$paragraph->get('field_banner_item')->isEmpty()) {
+      // Initialize an array to store Counter Up Feature values.
+      $bannerItems = [];
+
+      // Get the paragraph field.
+      $paragraphs = $paragraph->get('field_banner_item')->referencedEntities();
+
+      // Loop through each paragraph entity.
+      foreach ($paragraphs as $paragraph) {
+        // Extract values from the paragraph.
+        $media = getMediaData($paragraph);
+        $label = $paragraph->get('field_title')->value;
+
+        // Add extracted values to the Counter Up Features array.
+        $bannerItems[] = [
+          'image' => $media ?? null,
+          'label' => $label ?? null,
+        ];
+      }
+
+      // Add the Counter Up Features array to the variables.
+      $variables['paragraph_banner_items'] = $bannerItems;
     }
   }
 }
@@ -172,11 +176,47 @@ function prueba_module_theme_suggestions_views_view_unformatted_alter(array &$su
 /**
  * Implements hook_form_FORM_ID_alter() for an exposed form in Views.
  */
-function prueba_module_form_views_exposed_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
-  if ($form['#id'] == 'views-exposed-form-last-events-block-1'){
+function prueba_module_form_views_exposed_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
+  if ($form['#id'] == 'views-exposed-form-last-events-block-1') {
     // librería personalizada que contiene CSS y JS.
     $form['#attached']['library'][] = 'prueba_module/convertSelectToButtons';
   }
 }
 
+function getMediaData($entity){
+  $variables = [];
+  // For media images, extract the URL and alt text and set them as variables.
+  if ($entity->hasField('field_media_image') && !$entity->get('field_media_image')->isEmpty()) {
+    $media = $entity->get('field_media_image')->entity;
+    if ($media) {
+      $media_image_fields = ['field_media_image', 'field_media_image_1'];
+      foreach ($media_image_fields as $media_image) {
+        if ($media->hasField($media_image)) {
+          $image = $media->get($media_image)->entity;
+          if ($image) {
+            $variables['image_url'] = $image->createFileUrl(FALSE);
+            $variables['image_alt'] = $media->get($media_image)->alt ?? '';
+            break;
+          }
+        }
+      }
+    }
+  }
 
+  return $variables;
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function prueba_module_preprocess_page(&$variables) {
+  // Check if the current page is not an admin page.
+  if (!\Drupal::service('router.admin_context')->isAdminRoute()) {
+    // Attach tailwind library.
+    $variables['#attached']['library'][] = 'prueba_module/tailwindcss';
+
+    // Attach general library.
+    $variables['#attached']['library'][] = 'prueba_module/style';
+  }
+}
