@@ -1,7 +1,7 @@
-prueba_module.contact:
-  path: '/prueba-module/contact'
+prueba_module.contact_form:
+  path: '/prueba-module/contact-us'
   defaults:
     _title: 'Contact'
-    _form: 'Drupal\prueba_module\Form\Contact'
+    _form: 'Drupal\prueba_module\Form\ContactForm'
   requirements:
-    _permission: 'access content'
+    _access: 'TRUE'

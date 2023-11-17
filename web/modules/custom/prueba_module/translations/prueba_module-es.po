@@ -25,4 +25,13 @@ msgstr "Si recibiste este mensaje, tu sitio es capaz de enviar correos usando SM
 msgid "Success. The e-mail has been sent to @email via SMTP."
 msgstr "Exito!, Se ha enviado un correo a @email via SMTP."
 
+msgid "Select a State"
+msgstr "Selecciona un estado"
+
+msgid "Country"
+msgstr "Selecciona un estado"
+
+msgid "State"
+msgstr "Selecciona un estado"
+
 

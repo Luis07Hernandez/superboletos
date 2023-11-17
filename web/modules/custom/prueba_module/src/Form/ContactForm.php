@@ -1,19 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\prueba_module\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Mail\MailManagerInterface;
 use Drupal\Core\Session\AccountProxyInterface;
+use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Provides a default form.
+ * Provides a Prueba Module form.
  */
-class Contact extends FormBase
+final class ContactForm extends FormBase
 {
 
   /**
@@ -45,6 +48,13 @@ class Contact extends FormBase
   protected $mailManager;
 
   /**
+   * The entity repostory service.
+   *
+   * @var \Drupal\Core\Entity\EntityRepositoryInterface
+   */
+  protected $entityRepository;
+
+  /**
    * Constructs a new MyCustomService object.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
@@ -56,13 +66,14 @@ class Contact extends FormBase
    * @param \Drupal\Core\Mail\MailManagerInterface $mail_manager
    *   The mail manager service.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, LanguageManagerInterface $language_manager, AccountProxyInterface $current_user, MailManagerInterface $mail_manager)
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, LanguageManagerInterface $language_manager, AccountProxyInterface $current_user, MailManagerInterface $mail_manager, EntityRepositoryInterface $entityRepository)
   {
     $this->entityTypeManager = $entity_type_manager;
     $this->languageManager = $language_manager;
     $this->currentUser = $current_user;
     $this->mailManager = $mail_manager;
     $this->messenger();
+    $this->entityRepository = $entityRepository;
   }
 
   /**
@@ -80,7 +91,8 @@ class Contact extends FormBase
       $container->get('entity_type.manager'),
       $container->get('language_manager'),
       $container->get('current_user'),
-      $container->get('plugin.manager.mail')
+      $container->get('plugin.manager.mail'),
+      $container->get('entity.repository'),
     );
   }
 
@@ -97,11 +109,12 @@ class Contact extends FormBase
    */
   public function buildForm(array $form, FormStateInterface $form_state): array
   {
-
     $form['name'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Full Name'),
       '#required' => TRUE,
+      '#prefix' => '<div id="edit-country_states">',
+      '#suffix' => '</div>',
     ];
 
     $form['promotora'] = [
@@ -126,17 +139,17 @@ class Contact extends FormBase
     $langcode = $this->languageManager->getCurrentLanguage()->getId();
     $terms = $this->entityTypeManager->getStorage('taxonomy_term')->loadByProperties([
       'vid' => 'country',
-      'langcode' => $langcode,
     ]);
 
     $options = [];
     foreach ($terms as $term) {
-      $options[$term->id()] = $term->label();
+      $translated_term = $this->entityRepository->getTranslationFromContext($term, $langcode);
+      $options[$translated_term->id()] = $translated_term->label();
     }
 
     $form['countries'] = [
       '#type' => 'select',
-      '#title' => $this->t('Select a Country'),
+      '#title' => $this->t('Country'),
       '#options' => $options,
       '#ajax' => [
         'callback' => '::updateStatesCallback',
@@ -153,6 +166,7 @@ class Contact extends FormBase
 
     $form['country_states'] = [
       '#type' => 'select',
+      '#title' => $this->t('State'),
       '#disabled' => TRUE,
       '#options' => [$this->t('Select a Country')],
       '#prefix' => '<div id="edit-country_states">',
@@ -181,7 +195,7 @@ class Contact extends FormBase
   /**
    * {@inheritdoc}
    */
-  public function validateForm(array &$form, FormStateInterface $form_state)
+  public function validateForm(array &$form, FormStateInterface $form_state): void
   {
     parent::validateForm($form, $form_state);
   }
@@ -189,15 +203,25 @@ class Contact extends FormBase
   /**
    * {@inheritdoc}
    */
-  public function submitForm(array &$form, FormStateInterface $form_state)
+  public function submitForm(array &$form, FormStateInterface $form_state): void
   {
-
     $values = $form_state->getValues();
     $body = $this->t('Form Submission Details:') . "\n\n";
 
     foreach ($values as $key => $value) {
       if (!in_array($key, ['submit', 'form_build_id', 'form_token', 'form_id'])) {
-        $body .= $this->t('@key: @value', ['@key' => $key, '@value' => is_array($value) ? implode(', ', $value) : $value]) . "\n";
+
+        // Get fiel label
+        $field_label = isset($form[$key]['#title']) ? $form[$key]['#title'] : $key;
+
+        if ($key == 'countries'){
+          $langcode = $this->languageManager->getCurrentLanguage()->getId();
+          $translated_term = $this->entityRepository->getTranslationFromContext($this->entityTypeManager->getStorage('taxonomy_term')->load($value), $langcode);
+          $value = $translated_term->label();
+        }
+
+        // Build the message body with the field labels
+        $body .= $this->t('@label: @value', ['@label' => $field_label, '@value' => $value]) . "\n";
       }
     }
 
@@ -207,20 +231,49 @@ class Contact extends FormBase
     $params['subject'] = $this->t('Drupal Superboletos Playful - Luis Hernandez');
     $params['body'] = $this->t('If you receive this message it means your site is capable of using SMTP to send e-mail.') . $body;
 
-    $mailManager = \Drupal::service('plugin.manager.mail');
-    $currentUser = \Drupal::service('current_user');
-
-    if ($mailManager->mail('prueba_module', 'general_mail', $email_address, $currentUser->getPreferredLangcode(), $params)) {
-      \Drupal::messenger()->addMessage($this->t('Success. The e-mail has been sent to @email via SMTP.', ['@email' => $email_address]));
+    if ($this->mailManager->mail('prueba_module', 'general_mail', $email_address, $this->currentUser->getPreferredLangcode(), $params)) {
+      $this->messenger()->addStatus($this->t('The message has been sent.'));
+      $this->messenger->addMessage($this->t('Success. The e-mail has been sent to @email via SMTP.', ['@email' => $email_address]));
     }
+
+    $form_state->setRedirect('<front>');
   }
 
+  /**
+   * Callback function to update states dropdown.
+   *
+   * This function is typically used as an AJAX callback to update a part of the form.
+   * It returns the form element that contains states, which is usually updated
+   * based on a selection made in another form element, like a country dropdown.
+   *
+   * @param array &$form
+   *   The form array.
+   * @param FormStateInterface $form_state
+   *   The current state of the form.
+   *
+   * @return array
+   *   The updated form element for states.
+   */
   public function updateStatesCallback(array &$form, FormStateInterface $form_state)
   {
     // Return the prepared textfield.
     return $form['country_states'];
   }
 
+  /**
+   * Retrieves states based on the provided country taxonomy term ID.
+   *
+   * This function loads the taxonomy term for the given country ID and then
+   * retrieves the states associated with it. It's commonly used to populate
+   * a states dropdown based on the selected country.
+   *
+   * @param mixed $country_tid
+   *   The taxonomy term ID of the country.
+   *
+   * @return array
+   *   An associative array of states, where the keys and values are the state names.
+   *   Returns an empty array if no states are found or if the country ID is not provided.
+   */
   protected function getStatesByCountry($country_tid)
   {
     $states = [];
