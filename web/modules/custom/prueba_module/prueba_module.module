@@ -101,6 +101,7 @@ function prueba_module_preprocess_paragraph(&$variables)
   // Define the content types that this preprocess applies to.
   $valid_paragraph = [
     'event',
+    'banners_list'
   ];
 
   // Check if the current paragraph type is one of the valid paragraph types.

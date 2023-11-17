@@ -1,6 +1,6 @@
 uuid: 6679a79f-e431-444b-bc7b-a979b961e694
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - views.view.last_events

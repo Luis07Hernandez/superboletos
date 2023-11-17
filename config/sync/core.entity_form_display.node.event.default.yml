@@ -6,7 +6,7 @@ dependencies:
     - field.field.node.event.field__city
     - field.field.node.event.field_category
     - field.field.node.event.field_date
-    - field.field.node.event.field_imagen
+    - field.field.node.event.field_media_image
     - field.field.node.event.field_recinto
     - node.type.event
   module:
@@ -48,9 +48,9 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_imagen:
+  field_media_image:
     type: media_library_widget
-    weight: 8
+    weight: 26
     region: content
     settings:
       media_types: {  }

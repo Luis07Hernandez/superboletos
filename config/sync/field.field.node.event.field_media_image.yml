@@ -1,17 +1,17 @@
-uuid: b1603a54-b2e3-426b-b8bd-8ddeb8759e19
+uuid: 8d6a3646-b57f-4c28-9fa6-ddbfc8113e36
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_imagen
+    - field.storage.node.field_media_image
     - media.type.image
     - node.type.event
-id: node.event.field_imagen
-field_name: field_imagen
+id: node.event.field_media_image
+field_name: field_media_image
 entity_type: node
 bundle: event
-label: Imagen
-description: 'Choose an image'
+label: Image
+description: 'Choose and image'
 required: true
 translatable: false
 default_value: {  }

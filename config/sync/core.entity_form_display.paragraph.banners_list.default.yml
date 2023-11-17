@@ -1,0 +1,23 @@
+uuid: f0bae311-96ca-42b9-b70c-b73cee76336b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.banners_list.field_block_title
+    - paragraphs.paragraphs_type.banners_list
+id: paragraph.banners_list.default
+targetEntityType: paragraph
+bundle: banners_list
+mode: default
+content:
+  field_block_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
