@@ -8,7 +8,7 @@ smtp_protocol: standard
 smtp_autotls: true
 smtp_timeout: 30
 smtp_username: apikey
-smtp_password: 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
+smtp_password: ''
 smtp_from: abc070707070070707070070707070@gmail.com
 smtp_fromname: 'SuperBoletos Playful Pruebas'
 smtp_client_hostname: ''
