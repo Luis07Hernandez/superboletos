@@ -1,5 +1,5 @@
 prueba_module.contact_form:
-  path: '/prueba-module/contact-us'
+  path: 'contact-us'
   defaults:
     _title: 'Contact'
     _form: 'Drupal\prueba_module\Form\ContactForm'
