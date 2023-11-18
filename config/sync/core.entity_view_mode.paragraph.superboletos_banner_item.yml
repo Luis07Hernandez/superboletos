@@ -1,0 +1,10 @@
+uuid: cacbd017-e018-498f-95d6-13805a8af777
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.superboletos_banner_item
+label: superboletos_banner_item
+targetEntityType: paragraph
+cache: true

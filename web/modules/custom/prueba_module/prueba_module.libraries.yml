@@ -1,0 +1,29 @@
+tailwindcss:
+  version: 2.2.x
+  js:
+    https://cdn.tailwindcss.com: { type: external, minified: true, weight: -1, group: JS_LIBRARY, every_page: true }
+
+# Global styles
+style:
+  version: 2.2.x
+  css:
+    theme:
+      css/style.css: { }
+  js:
+    js/main.js: {}
+
+convertSelectToButtons:
+  version: 2.2.x
+  js:
+    js/convertSelectToButtons.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+
+carruselTrack:
+  version: 2.2.x
+  js:
+    js/carruselTrack.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal

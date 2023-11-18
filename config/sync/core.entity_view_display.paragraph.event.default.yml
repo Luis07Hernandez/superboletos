@@ -1,0 +1,21 @@
+uuid: da00e9ee-2900-4399-8743-c15fe2c859ce
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.event.field_block_title
+    - paragraphs.paragraphs_type.event
+id: paragraph.event.default
+targetEntityType: paragraph
+bundle: event
+mode: default
+content:
+  field_block_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

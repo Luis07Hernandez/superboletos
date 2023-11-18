@@ -1,0 +1,175 @@
+.superboletos-node-teaser-8 a div {
+  min-height: 500px;
+}
+
+.superboletos-node-teaser {
+  margin-block-end: inherit !important;
+  position: inherit !important;
+}
+
+#views-exposed-form-last-events-block-1 {
+  display: none;
+}
+
+.button-selected {
+  background-color: white !important;
+  color: rgb(31 41 55) !important;
+  border: 1px solid rgb(31 41 55);
+}
+
+/* Carrusel */
+
+.carrusel-container {
+  position: relative;
+  min-width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.carrusel-prev,
+.carrusel-next {
+  position: relative;
+  /* right: -35px; */
+  z-index: 1;
+  height: 40px;
+  width: 40px;
+  border: none;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  /* -webkit-appearance: button; */
+  border-radius: 50%;
+  background: #ffffff;
+  -webkit-box-shadow: 0px 2px 4px rgba(80, 77, 211, 0.15);
+  box-shadow: 0px 2px 4px rgba(80, 77, 211, 0.15);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  cursor: pointer;
+}
+
+.carrusel-prev {
+  margin: 0px 5px;
+  background-image: url(https://d1y4lmvozupq5z.cloudfront.net/SuperBoletosRepositorio/apps/resources/img/iconos/chevron-left_blue@2x.png);
+}
+
+.carrusel-next {
+  margin: 0px 5px;
+  background-image: url(https://d1y4lmvozupq5z.cloudfront.net/SuperBoletosRepositorio/apps/resources/img/iconos/chevron-right_blue@2x.png);
+}
+
+/* Cards st1 */
+
+.card-qeb {
+  width: calc(100% - 10px);
+  background-color: aquamarine;
+  margin: 0 auto;
+  height: 85px;
+  position: relative;
+}
+
+.degradado-style {
+  height: 85px;
+  background: -o-linear-gradient(180deg,
+      rgba(0, 0, 0, 5e-5) 0%,
+      rgba(0, 0, 0, 0.5) 100%);
+  background: -webkit-linear-gradient(180deg,
+      rgba(0, 0, 0, 5e-5) 0%,
+      rgba(0, 0, 0, 0.5) 100%);
+  background: -moz-linear-gradient(180deg,
+      rgba(0, 0, 0, 5e-5) 0%,
+      rgba(0, 0, 0, 0.5) 100%);
+  background: -ms-linear-gradient(180deg,
+      rgba(0, 0, 0, 0.15) 0%,
+      rgba(0, 0, 0, 0.25) 100%);
+  background: -webkit-gradient(linear,
+      left top,
+      left bottom,
+      from(rgba(0, 0, 0, 5e-5)),
+      to(rgba(0, 0, 0, 0.5)));
+  background: -webkit-linear-gradient(top,
+      rgba(0, 0, 0, 5e-5) 0%,
+      rgba(0, 0, 0, 0.5) 100%);
+  background: -o-linear-gradient(top,
+      rgba(0, 0, 0, 5e-5) 0%,
+      rgba(0, 0, 0, 0.5) 100%);
+  background: linear-gradient(180deg,
+      rgba(0, 0, 0, 5e-5) 0%,
+      rgba(0, 0, 0, 0.5) 100%);
+}
+
+.card-qeb .title {
+  z-index: 1;
+  float: left;
+  bottom: 0;
+  padding: 19px 20px 19px 20px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 24px;
+  color: #fffffb;
+}
+
+/* Text Colors */
+
+.color-1 {
+  color: #2b2974 !important;
+}
+
+/* Modify html with tailwind */
+
+.carrusel-container .container {
+  padding-inline: initial !important;
+}
+
+.view-empty {
+  font-weight: bold;
+  font-size: 50px;
+  color: white;
+  width: 100%;
+  height: 300px;
+  background: url(https://i.pinimg.com/originals/ba/5d/7d/ba5d7ded88ae7bb9598dc7f562c103d0.gif);
+  background-repeat: no-repeat;
+}
+
+.customInput {
+  width: 100% !important;
+  border: none !important;
+  border-bottom: 1px solid !important;
+  background-size: 16px 16px;
+}
+
+.customButton {
+  height: 60px !important;
+  color: #fffffb !important;
+  font-weight: 500 !important;
+  border: none !important;
+  -webkit-transition: background 0.35s linear !important;
+  -moz-transition: background 0.35s linear !important;
+  -o-transition: background 0.35s linear !important;
+  -ms-transition: background 0.35s linear !important;
+  transition: background 0.35s linear !important;
+  -webkit-box-shadow: 0px 4px 16px rgba(239, 29, 73, 0.35) !important;
+  box-shadow: 0px 4px 16px rgba(239, 29, 73, 0.35) !important;
+  background: #EF1D49 !important;
+  background: -moz-linear-gradient(-45deg, #EF1D49 0%, #34328D 100%) !important;
+  background: -webkit-linear-gradient(-45deg, #EF1D49 0%, #34328D 100%) !important;
+  background: -webkit-linear-gradient(315deg, #EF1D49 0%, #34328D 100%) !important;
+  background: -o-linear-gradient(315deg, #EF1D49 0%, #34328D 100%) !important;
+  background: linear-gradient(135deg, #EF1D49 0%, #34328D 100%) !important;
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='$c-red-ef', endColorstr='$c-blu-34', GradientType=1) !important;
+  border-radius: 42px !important;
+}
+
+.customButton:hover {
+  background: #EF1D49 !important;
+  background: -moz-linear-gradient(0deg, rgba(52, 50, 141, 0.7), rgba(52, 50, 141, 0.7)), -moz-linear-gradient(-45deg, #EF1D49 0%, #34328D 100%) !important;
+  background: -webkit-linear-gradient(0deg, rgba(52, 50, 141, 0.7), rgba(52, 50, 141, 0.7)), -webkit-linear-gradient(-45deg, #EF1D49 0%, #34328D 100%) !important;
+  background: -webkit-linear-gradient(bottom, rgba(52, 50, 141, 0.7), rgba(52, 50, 141, 0.7)), -webkit-linear-gradient(315deg, #EF1D49 0%, #34328D 100%) !important;
+  background: -o-linear-gradient(bottom, rgba(52, 50, 141, 0.7), rgba(52, 50, 141, 0.7)), -o-linear-gradient(315deg, #EF1D49 0%, #34328D 100%) !important;
+  background: linear-gradient(0deg, rgba(52, 50, 141, 0.7), rgba(52, 50, 141, 0.7)), linear-gradient(135deg, #EF1D49 0%, #34328D 100%) !important;
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='$c-red-ef', endColorstr='$c-blu-34', GradientType=1) !important;
+}

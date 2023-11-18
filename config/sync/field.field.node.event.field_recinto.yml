@@ -1,0 +1,19 @@
+uuid: e986fa40-022f-48c8-8a19-d98b4cd8f4a2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_recinto
+    - node.type.event
+id: node.event.field_recinto
+field_name: field_recinto
+entity_type: node
+bundle: event
+label: Recinto
+description: 'Enter the recital'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

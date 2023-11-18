@@ -1,0 +1,19 @@
+uuid: a7a1b21c-8d93-4199-b715-c62b7eae1d32
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_states
+    - taxonomy.vocabulary.country
+id: taxonomy_term.country.field_states
+field_name: field_states
+entity_type: taxonomy_term
+bundle: country
+label: States
+description: 'Add state'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

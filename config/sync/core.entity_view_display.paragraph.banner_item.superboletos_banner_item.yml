@@ -1,0 +1,32 @@
+uuid: 69874cec-b866-4c9e-b439-18323066645a
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.superboletos_banner_item
+    - field.field.paragraph.banner_item.field_media_image
+    - field.field.paragraph.banner_item.field_title
+    - paragraphs.paragraphs_type.banner_item
+id: paragraph.banner_item.superboletos_banner_item
+targetEntityType: paragraph
+bundle: banner_item
+mode: superboletos_banner_item
+content:
+  field_media_image:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

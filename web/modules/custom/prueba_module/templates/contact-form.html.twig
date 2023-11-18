@@ -1,0 +1,72 @@
+{{ attach_library('prueba_module/tailwindcss') }}
+
+{# Tags necessary for the operation of the form #}
+{{ form.form_build_id }}
+{{ form.form_token }}
+{{ form.form_id }}
+
+<div class="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+
+	<div class="mx-auto max-w-2xl text-left">
+		<h5 class="text-1xl font-bold tracking-tight text-gray-900 sm:text-2xl text-rose-700">
+			{{'PROMOTER DATA'|t}}
+		</h5>
+	</div>
+
+	<div class="mx-auto max-w-2xl sm:mt-10">
+		<div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+			<div
+				class="relative w-full">
+				<label class="text-gray-400 font-bold after:content[' '] pointer-events-none absolute left-0 -top-2.5 flex h-full w-full select-none text-sm font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-pink-500 after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:after:scale-x-100 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+					{{'Full Name' | t}}
+				</label>
+				{{form.name}}
+			</div>
+
+			<div
+				class="relative w-full">
+				<label class="text-gray-400 font-bold after:content[' '] pointer-events-none absolute left-0 -top-2.5 flex h-full w-full select-none text-sm font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-pink-500 after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:after:scale-x-100 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+					{{'Promoter Name'|t}}
+				</label>
+				{{form.promotora}}
+			</div>
+
+			<div
+				class="relative w-full">
+				<label class="text-gray-400 font-bold after:content[' '] pointer-events-none absolute left-0 -top-2.5 flex h-full w-full select-none text-sm font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-pink-500 after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:after:scale-x-100 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+					{{'Email'|t}}
+				</label>
+				{{form.email}}
+			</div>
+
+			<div
+				class="relative w-full">
+				<label class="text-gray-400 font-bold after:content[' '] pointer-events-none absolute left-0 -top-2.5 flex h-full w-full select-none text-sm font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-pink-500 after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:after:scale-x-100 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+					{{'Address'|t}}
+				</label>
+				{{form.Address}}
+			</div>
+
+			<div
+				class="relative w-full">
+				<label class="text-gray-400 font-bold after:content[' '] pointer-events-none absolute left-0 -top-2.5 flex h-full w-full select-none text-sm font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-pink-500 after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:after:scale-x-100 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+					{{'Country'|t}}
+				</label>
+				{{form.countries}}
+			</div>
+
+			<div
+				class="relative w-full">
+				<label class="text-gray-400 font-bold after:content[' '] pointer-events-none absolute left-0 -top-2.5 flex h-full w-full select-none text-sm font-normal leading-tight text-blue-gray-500 transition-all after:absolute after:-bottom-2.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-pink-500 after:transition-transform after:duration-300 peer-placeholder-shown:leading-tight peer-placeholder-shown:text-blue-gray-500 peer-focus:text-sm peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:after:scale-x-100 peer-focus:after:border-pink-500 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+					{{'State'|t}}
+				</label>
+				{{form.country_states}}
+			</div>
+
+			<div class="relative w-full"></div>
+			<div class="relative w-full flex justify-end">
+				{{form.submit}}
+			</div>
+		</div>
+	</div>
+</div>
