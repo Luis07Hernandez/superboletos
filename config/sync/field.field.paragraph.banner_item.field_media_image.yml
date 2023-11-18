@@ -13,7 +13,7 @@ bundle: banner_item
 label: Image
 description: 'Choose an image'
 required: true
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
