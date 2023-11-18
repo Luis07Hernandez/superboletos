@@ -139,12 +139,7 @@
   width: 100% !important;
   border: none !important;
   border-bottom: 1px solid !important;
-}
-
-.customInput::after{
-  content: '*' !important;
-  position: absolute !important;
-  top: 100px !important;
+  background-size: 16px 16px;
 }
 
 .customButton {

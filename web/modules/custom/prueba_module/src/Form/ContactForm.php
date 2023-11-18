@@ -109,12 +109,15 @@ final class ContactForm extends FormBase
    */
   public function buildForm(array $form, FormStateInterface $form_state): array
   {
+    $custom_icon = 'background-image: url(/modules/custom/prueba_module/images/keyboard-solid.svg); background-repeat: no-repeat; background-position: right 10px center; padding-right: 30px;';
+
     $form['name'] = [
       '#type' => 'textfield',
       '#required' => TRUE,
       '#attributes' => [
         'class' => ['customInput'],
         'placeholder' => $this->t('Full Name'),
+        'style' => [$custom_icon],
       ],
     ];
 
@@ -124,6 +127,7 @@ final class ContactForm extends FormBase
       '#attributes' => [
         'class' => ['customInput'],
         'placeholder' => $this->t('Promoter Name'),
+        'style' => [$custom_icon],
       ],
     ];
 
@@ -133,6 +137,7 @@ final class ContactForm extends FormBase
       '#attributes' => [
         'class' => ['customInput'],
         'placeholder' => $this->t('Email'),
+        'style' => [$custom_icon],
       ],
     ];
 
@@ -142,6 +147,7 @@ final class ContactForm extends FormBase
       '#attributes' => [
         'class' => ['customInput'],
         'placeholder' => $this->t('Address'),
+        'style' => [$custom_icon],
       ],
     ];
 
