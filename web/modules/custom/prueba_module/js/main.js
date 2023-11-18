@@ -2,22 +2,25 @@
   Drupal.behaviors.customCarouselBehavior = {
     attach: function (context, settings) {
       document.addEventListener("DOMContentLoaded", function () {
-        const carousel = document.getElementById("carousel");
-        const scrollLeftButton = document.getElementById("scrollLeft");
-        const scrollRightButton = document.getElementById("scrollRight");
+        const container = document.querySelector("#carousel-track");
+        const children = document.querySelector("#carrusel-item");
 
-        // Scroll the carousel to the left
-        scrollLeftButton.addEventListener("click", () => {
-          carousel.scrollBy({
-            left: -carousel.offsetWidth,
-            behavior: "smooth",
+        document
+          .querySelector(".carrusel-prev")
+          .addEventListener("click", function () {
+            // Calcula el ancho del elemento a desplazar
+            var scrollAmount = children.offsetWidth;
+            // Desplaza el contenedor suavemente hacia la izquierda
+            container.scrollBy({ left: -scrollAmount, behavior: "smooth" });
           });
-        });
 
-        // Scroll the carousel to the right
-        scrollRightButton.addEventListener("click", () => {
-          carousel.scrollBy({ left: carousel.offsetWidth, behavior: "smooth" });
-        });
+        document
+          .querySelector(".carrusel-next")
+          .addEventListener("click", function () {
+            var scrollAmount = children.offsetWidth;
+            // Desplaza el contenedor suavemente hacia la derecha
+            container.scrollBy({ left: scrollAmount, behavior: "smooth" });
+          });
       });
     },
   };
