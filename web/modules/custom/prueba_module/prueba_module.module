@@ -42,6 +42,13 @@ function prueba_module_theme($theme, $type, $module, $path)
  */
 function prueba_module_preprocess_node(&$variables)
 {
+
+  // Attach the Tailwind CSS library.
+  // This library should be defined in the prueba_module.libraries.yml file.
+  // Esto va a cambiar de lugar, al ser solo una prueba, decidi usar la cdn, para entornos produccion
+  // o sitios reales se debe usar npm
+  $variables['#attached']['library'][] = 'prueba_module/tailwindcss';
+
   $node = $variables['node'];
 
   // Get node bundle/type
@@ -264,10 +271,6 @@ function prueba_module_preprocess_page(&$variables)
 {
   // Check if the current page is not an admin page.
   if (!\Drupal::service('router.admin_context')->isAdminRoute()) {
-    // Attach the Tailwind CSS library.
-    // This library should be defined in the prueba_module.libraries.yml file.
-    $variables['#attached']['library'][] = 'prueba_module/tailwindcss';
-
     // Attach a general library (can include CSS/JS) specific to prueba_module.
     // This library should also be defined in the prueba_module.libraries.yml file.
     $variables['#attached']['library'][] = 'prueba_module/style';
