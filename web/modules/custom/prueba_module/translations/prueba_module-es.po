@@ -34,4 +34,7 @@ msgstr "Selecciona un estado"
 msgid "State"
 msgstr "Selecciona un estado"
 
+msgid "PROMOTER DATA"
+msgstr "DATOS DEL PROMOTOR"
+
 

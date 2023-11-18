@@ -31,6 +31,9 @@ function prueba_module_theme($theme, $type, $module, $path)
       'render element' => 'elements',
       'template' => 'paragraph--banners-list',
     ],
+    'contact_form' => [
+      'render element' => 'form',
+    ],
   ];
 }
 

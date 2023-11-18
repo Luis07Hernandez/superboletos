@@ -111,28 +111,38 @@ final class ContactForm extends FormBase
   {
     $form['name'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Full Name'),
       '#required' => TRUE,
-      '#prefix' => '<div id="edit-country_states">',
-      '#suffix' => '</div>',
+      '#attributes' => [
+        'class' => ['customInput'],
+        'placeholder' => $this->t('Full Name'),
+      ],
     ];
 
     $form['promotora'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Promoter Name'),
       '#required' => TRUE,
+      '#attributes' => [
+        'class' => ['customInput'],
+        'placeholder' => $this->t('Promoter Name'),
+      ],
     ];
 
     $form['email'] = [
       '#type' => 'email',
-      '#title' => $this->t('Email'),
       '#required' => TRUE,
+      '#attributes' => [
+        'class' => ['customInput'],
+        'placeholder' => $this->t('Email'),
+      ],
     ];
 
     $form['Address'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Address'),
       '#required' => TRUE,
+      '#attributes' => [
+        'class' => ['customInput'],
+        'placeholder' => $this->t('Address'),
+      ],
     ];
 
     // Obtiene las taxonomías de tipo "country" en el idioma actual.
@@ -149,7 +159,6 @@ final class ContactForm extends FormBase
 
     $form['countries'] = [
       '#type' => 'select',
-      '#title' => $this->t('Country'),
       '#options' => $options,
       '#ajax' => [
         'callback' => '::updateStatesCallback',
@@ -162,16 +171,23 @@ final class ContactForm extends FormBase
         ],
       ],
       '#required' => TRUE,
+      '#attributes' => [
+        'class' => ['customInput'],
+        'placeholder' => $this->t('Address'),
+      ],
     ];
 
     $form['country_states'] = [
       '#type' => 'select',
-      '#title' => $this->t('State'),
       '#disabled' => TRUE,
       '#options' => [$this->t('Select a Country')],
       '#prefix' => '<div id="edit-country_states">',
       '#suffix' => '</div>',
       '#required' => TRUE,
+      '#attributes' => [
+        'class' => ['customInput'],
+        'placeholder' => $this->t('Address'),
+      ],
     ];
 
     // If a country has been chooice
@@ -187,7 +203,12 @@ final class ContactForm extends FormBase
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Submit'),
+      '#attributes' => [
+        'class' => ['customButton'],
+      ],
     ];
+
+    $form['#theme'] = 'contact_form';
 
     return $form;
   }
