@@ -1,8 +1,5 @@
 tailwindcss:
   version: 2.2.x
-  css:
-    theme:
-      https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css: { type: external, minified: true }
   js:
     https://cdn.tailwindcss.com: { type: external, minified: true, weight: -1, group: JS_LIBRARY, every_page: true }
 
