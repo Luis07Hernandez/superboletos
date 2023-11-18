@@ -254,7 +254,9 @@ final class ContactForm extends FormBase
 
     $body .= "\n" . $this->t('This message was sent from the form ID: @form_id', ['@form_id' => 'prueba_module_contact']);
 
+    // change here, if you want the emails to be directed to an account, for testing purposes I send the email to the one entered by the form.
     $email_address = $form_state->getValue('email');
+
     $params['subject'] = $this->t('Drupal Superboletos Playful - Luis Hernandez');
     $params['body'] = $this->t('If you receive this message it means your site is capable of using SMTP to send e-mail.') . $body;
 
