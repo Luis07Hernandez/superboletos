@@ -27,3 +27,14 @@ carruselTrack:
   dependencies:
     - core/jquery
     - core/drupal
+
+slick:
+  version: 2.2.x
+  css:
+    theme:
+      //cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css: { type: external, minified: true }
+  js:
+    //cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js: { type: external, minified: true }
+  dependencies:
+    - core/jquery
+
